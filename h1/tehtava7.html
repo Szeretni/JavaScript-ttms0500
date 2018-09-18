@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+    <title>Tehtävä 7</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="h01t07-nettoasunto-html5-lomake.css" type="text/css" />
+</head>
+<body>
+    <div>
+    <p id="tulosrivi"></p>
+    <h1>Nettiasunto - Ilmianna loistokohde</h1>
+    <form action="nayta-http-data.php" method="post">
+        <legend>Ilmiantaja</legend>
+        <fieldset>
+            <br />
+            <label>Nimi:</label>
+            <br />
+            <input type="text" name="name" class="textField" autofocus placeholder="Kirjoita nimesi tähän" required />
+            
+            <label>Puhelinnumero:</label>
+            <br />
+            <input type="text" name="phoneNumber" class="textField" placeholder="Puhelinnumero muodossa 040 xxx xxx x" pattern="[0-9]{3}\s[0-9]{3}\s[0-9]{3}\s[0-9]{1}" />
+            
+            <label>Email:</label>
+            <br />
+            <input type="text" name="email" class="textField" placeholder="Kirjoita sähköpostiosoitteesi tähän" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+        </fieldset>
+
+        <legend>Ilmoituksen URL</legend>
+        <fieldset>
+            <br />
+            <label>Myynti-ilmoituksen URL:</label>
+            <br />
+            <input type="url" name="url" class="textField" placeholder="Kopioi JokaKodin/Etuoven kohtaURL tähän" pattern="https?.//.+" /> 
+        </fieldset>
+
+        <legend>Asunnon pyyntihinta</legend>
+        <fieldset>
+            <br />
+            <label id="hinta1"></label>
+            <br />
+            <span>1 kEUR</span>
+            <input type="range" name="demand" min="1" max="500" value="250" class="slider" id="demand" />
+            <span>500 kEUR</span>
+        </fieldset>
+        
+        <legend>Arvioimani hinta</legend>
+        <fieldset>
+            <br />
+            <label id="hinta2"></label>
+            <br />
+            <span>1 kEUR</span>
+            <input type="range" name="estimation" min="1" max="500" value="250" class="slider" id="estimate" />
+            <span>500 kEUR</span>
+        </fieldset>
+
+        <legend>Suosikkialueeni</legend>
+        <fieldset>
+            <br />
+            <input list="districts" name="district" />
+            <datalist id="districts">
+                <option value="Aittorinne" />
+                <option value="Keskusta" />
+                <option value="Kortepohja" />
+                <option value="Kuokkala" />
+                <option value="Roninmäki" />
+            </datalist>
+        </fieldset>
+
+        <button type="submit" id="nappi">
+            Ilmianna
+            <br />
+            asunto!
+        </button>
+    </form>
+    </div>
+    
+    <footer>
+        <p>&#169; 2018 Hannu Oksman. Kaikki oikeudet pidätetään.</p>
+    </footer>
+    
+    <script>
+        var keur = " kEUR";
+        var demand = document.getElementById("demand");
+        var estimate = document.getElementById("estimate");
+        var outputDemand = document.getElementById("hinta1");
+        var outputEstimate = document.getElementById("hinta2");
+        outputDemand.innerHTML = demand.value + keur;
+        outputEstimate.innerHTML = estimate.value + keur;
+        
+        demand.oninput = function() {
+            outputDemand.innerHTML = this.value + keur;
+        }
+        estimate.oninput = function() {
+            outputEstimate.innerHTML = this.value + keur;
+        }
+    </script>
+</body>
+</html>

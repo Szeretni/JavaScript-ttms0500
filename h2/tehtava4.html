@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta title="Harjoitus 2 : tehtävä 4"/>
+    </head>
+    <body>
+        <h1>Vauhtilaskin</h1>
+        <form id="f">
+            <label>Tunnit:</label>
+            <input type=text value="1" id="hours"><br>
+            <label>Minuutit:</label>
+            <input type=text value="13" id="minutes"><br>
+            <label>Sekunnit:</label>
+            <input type=text value="13" id="seconds"><br>
+            <label>Kilometrit:</label>
+            <input type=text value="20" id="kilometers"><br>
+            <button type="button" onclick="new Vauhtilaskin(f.hours.value, f.minutes.value, f.seconds.value,f.kilometers.value)">Laske vauhdit</button>
+        </form>
+
+        <div id="vauhtilaskin"></div>
+
+        <script>
+            class Vauhtilaskin {
+                constructor(hour,minute,second,kilometer){
+                    this.hour = parseFloat(hour);
+                    this.minute = parseFloat(minute);
+                    this.second = parseFloat(second);
+                    this.kilometer = parseFloat(kilometer);
+                    this.populateResult();
+                }
+
+                get kmhPace(){
+                    return this.calcKmhPace();
+                }
+
+                get minKmhPace(){
+                    return this.calcMinKmhPace();
+                }
+
+                calcKmhPace(){
+                    // kmh-laskentaa
+                    var tunnit = parseFloat(this.hour)+(parseFloat(this.minute)*60+parseFloat(this.second))/3600;
+                    var kmh = this.kilometer/tunnit;
+                    return kmh.toFixed(2) + " km/h";
+                }
+                
+                calcMinKmhPace(){
+                    // min.sec/km-laskentaa
+                    var sekunnit = parseFloat(this.hour)*60*60+parseFloat(this.minute)*60+parseFloat(this.second);
+                    var sekunnitPerKm = sekunnit/this.kilometer;
+
+                    var minutes = 0;
+
+                    while (sekunnitPerKm >= 60){
+                        minutes++;
+                        sekunnitPerKm = sekunnitPerKm - 60;
+                    }
+                    sekunnitPerKm = Math.round(sekunnitPerKm);
+                    sekunnitPerKm = String('0' + sekunnitPerKm).slice(-2);
+                    return minutes + "." + sekunnitPerKm + " min/km";
+                }
+                printResult(){
+                    return this.kmhPace + "<br/>" + this.minKmhPace;
+                }
+
+                populateResult(){
+                    document.getElementById("vauhtilaskin").innerHTML = this.printResult();
+                }
+
+                }
+        </script>
+    </body>
+</html>

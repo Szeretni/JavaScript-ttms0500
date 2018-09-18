@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Tehtävä 6</title>
+</head>
+<body>
+    <p>Valitse juhlaväri:</p>
+    <select id="color" >
+        <option value="#ff0">Keltainen</option>
+        <option value="#f00">Punainen</option>
+        <option value="#00f">Sininen</option>
+        <option value="#fed">Beige</option>
+        <option value="#888">Silver</option>
+    </select>
+    <p>Mikä juhla?</p>
+    <input type="text" id="input" />
+    <br/>
+    <button id="button">Vaihda valittu taustaväri</button>
+    <div id="print">
+        <p>Tulostusalue</p>
+        <p id="selected"></p>
+        <p id="text"></p>
+    </div>
+    
+    <script>
+        let color = document.getElementById('color');
+        let print = document.getElementById('print');
+        let selected = document.getElementById('selected');
+        let input = document.getElementById('input');
+        let text = document.getElementById('text');
+        selected.innerHTML = "Valittu: " + color.value;
+        
+        let changeBackground = () => {
+        print.style.backgroundColor = color.value;
+        }
+        
+        let colorChanged = () => {
+        selected.innerHTML = "Valittu: " + color.value;
+        }
+        
+        let textWriter = () => {
+        text.innerHTML = input.value;
+        }
+        
+        document.getElementById('button').addEventListener('click', changeBackground);
+        document.getElementById('color').addEventListener('change', colorChanged);
+        document.getElementById('input').addEventListener('keyup', textWriter);  
+    </script>
+</body>
+</html>

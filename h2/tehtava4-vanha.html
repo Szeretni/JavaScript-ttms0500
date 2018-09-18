@@ -1,0 +1,40 @@
+<?php
+$taustavarit["Keltainen"] = "#ff0";
+$taustavarit["Punainen"] = "#f00";
+$taustavarit["Sininen"] = "#00f";
+$taustavarit["Beige"] = "#fed";
+$taustavarit["Silver"] = "#888";
+
+$taustavari = '#ccc';
+
+if (isset($_GET['tvari'])){
+    $taustavari = $_GET['tvari'];
+}
+
+$tyylit = <<<EOTyyli
+<style type='text/css'>
+body
+{
+background-color: $taustavari;
+}
+</style>
+EOTyyli;
+
+$optiot = '';
+foreach($taustavarit as $varinimi => $varikoodi){
+    if($taustavari == $varikoodi){
+        $optiot .= "<input type='radio' name='tvari' value='$varikoodi' checked=checked>$varinimi<br/>\n";    
+    } else{
+        $optiot .= "<input type='radio' name='tvari' value='$varikoodi'>$varinimi<br/>\n";    
+    }
+}
+
+$lomake = <<<EOLomake
+<form method="get" action="{$_SERVER['PHP_SELF']}">
+$optiot
+<input type="submit" name="painike" value="Väritä"/>
+</form>
+EOLomake;
+echo $tyylit;
+echo $lomake;
+?>

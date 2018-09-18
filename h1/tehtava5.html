@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+           p {
+        padding: 0;
+    }
+    </style>
+</head>
+<body>
+<p id="print"></p>
+    
+
+<?php
+
+function taustaVari(){
+    static $oddRow = true;
+    if ($oddRow){
+        $oddRow = false;
+        return "#ffff00";
+    } else {
+        $oddRow = true;
+        return "#ffffff";
+    }
+}
+
+let $print = "testi";
+for($i=1;$i<8;$i++){
+    $color = taustaVari();
+    global $print;
+    $print += "<p style='background-color:{$color};'>{$i}. rivi</p>";
+}
+console.log($print);
+document.getElementById("print").innerHTML = $print;
+?>
+
+</body>
+</html>

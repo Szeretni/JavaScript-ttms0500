@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tehtävä 2</title>
+</head>
+<body>
+
+  <h1>Taulukon[11,22,33,44] läpikäyntiä</h1>
+  <p>tulostamista ja keskeisten suureiden laskemista anonyymeillä funktioilla</p>
+  <hr/>
+    
+  <p id="print"></p>
+ 
+    <script>
+        const arr = [11,22,33,44];
+
+        let arraySum = arr.reduce((acc, cur) => acc + cur);
+
+        let arrayAvg = () => arraySum / arrayCount();
+
+        let arrayCount = () => arr.length;
+
+        let printArray = () => {
+          let p = "";
+          for(let i = 0; i < arrayCount(); i++){
+            p += "taulukko[" + i + "] = " + arr[i] + "<br/>";
+          }
+            p += "<br/>"
+          return p;
+        }
+
+        let sisalto = `
+        Alkio ovat:<br/><br/>
+        ${printArray()}
+        Lukumäärä on: ${arrayCount()}<br/>
+        Summa on: ${arraySum}<br/>
+        Keskiarvo on: ${arrayAvg()}<br/>
+        `;
+
+        window.onload = document.getElementById("print").innerHTML = sisalto;
+    </script>
+    
+</body>
+</html>

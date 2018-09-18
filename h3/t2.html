@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Tehtävä 2</title>
+</head>
+<body>
+  
+    <a href="#" class="link" >KUVA 1</a>
+    <a href="#" class="link" >KUVA 2</a>
+    <a href="#" class="link" >KUVA 3</a>
+    <div id="picture" ></div>
+    
+    <script>
+        document.getElementById('picture').innerHTML = '<img src="http://student.labranet.jamk.fi/~L2912/images/Gapa_079_1080.jpg" />';
+        let links = document.querySelectorAll("a.link");
+        let populate = (url) => {
+            document.getElementById('picture').innerHTML = "<img src=" + url + " />";
+        }
+        let showPicture = (target) => {
+            let kuva1 = "http://student.labranet.jamk.fi/~L2912/images/Gapa_079_1080.jpg";
+            let kuva2 = "http://student.labranet.jamk.fi/~L2912/images/Zugspitze.jpg";
+            let kuva3 = "http://student.labranet.jamk.fi/~L2912/images/profiili.jpg";
+            switch(target.text){
+            case 'KUVA 1':
+                populate(kuva1);
+                break;
+            case 'KUVA 2':
+                populate(kuva2);
+                break;
+            case 'KUVA 3':
+                populate(kuva3);
+                break;
+            }   
+        }
+        for(i=0;i<links.length;i++){
+            links[i].addEventListener('click', function(){showPicture(this)} );
+        }  
+        </script>
+  
+</body>
+</html>
