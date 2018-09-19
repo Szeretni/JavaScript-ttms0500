@@ -1,0 +1,51 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script>
+//{"name":"Ari","age":49}
+function makeJSONString() {
+      var name = document.getElementById("name").value;
+      var age = parseInt(document.getElementById("age").value);
+      var JSONObject = {
+      "name":name,
+      "age":age
+      };
+      var myJSONText = JSON.stringify(JSONObject);
+      document.getElementById("textarea2").value = JSONObject
+        + "\n" + myJSONText;
+}
+
+function makeJSONObject() {
+      var text = document.getElementById("textarea1").value;
+      console.log("text" + text);
+
+      // eval:
+      var JSONObject = eval("("+ text + ")");
+      console.log("JSONObject = "+JSONObject);
+      console.log("name =" + JSONObject.name);
+
+      //parse:
+      var JSONObject2 = JSON.parse(text);
+      console.log("JSONObject2 = "+JSONObject2);
+      console.log("age =" + JSONObject2.age);
+}
+
+</script>
+
+<body>
+<form>   
+JSON String<br>
+<textarea id="textarea1" cols=30 rows=3></textarea><br>
+<input type=button value="makeJSONObject" onclick="makeJSONObject();">
+<p></p>
+<hr>
+Nimi:<br>
+<input type=text id=name><br>
+Ikä:<br>
+<input type=text id=age><br>
+
+<input type=button value="makeJSONString" onclick="makeJSONString();">
+<br>
+<textarea id="textarea2" cols=30 rows=3></textarea><br>
+</form>
+
+
+</body>

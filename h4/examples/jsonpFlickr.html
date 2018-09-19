@@ -1,0 +1,43 @@
+<!doctype html>
+<!-- 06-jsonp-flickr.html -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JSONP Example - Load photos from the Flickr Server</title>
+<script>
+
+function load() {
+	var script = document.createElement('script');
+   // https://www.flickr.com/services/feeds/docs/photos_public/
+	script.src = 'http://api.flickr.com/services/feeds/photos_public.gne?format=json&jsoncallback=parseRequest';
+	document.getElementsByTagName('head')[0].appendChild(script);
+}
+
+function parseRequest(response) {
+   // Näillä kommentoiduilla voi ensin tutkia, millaista dataa on saatavilla:
+	//console.log(response);
+	//console.log(response.items.length);
+   var maxitems = 3;
+	var items = response.items.length;
+
+   // Näytetään korkeintaan 3 ekaa kuvaa:
+   if (maxitems < items) items = maxitems;
+
+	for (i=0;i<items;i++) {
+		addImage(response.items[i].media.m);
+	}
+}
+
+function addImage(src) {
+	var img = document.createElement("img");
+	img.setAttribute("src",src);
+	document.body.appendChild(img);
+}
+
+</script>
+</head>
+
+<body>
+    <button onclick="load()">Load photos...</button><br/>
+</body>
+</html>

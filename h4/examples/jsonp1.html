@@ -1,0 +1,38 @@
+<head>
+<!-- 05-jsonp-ajax.html -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script>
+
+function loadJSONP() {
+   var url = "http://student.labranet.jamk.fi/~L2912/ttms0500/h4/examples/server-jsonp.php?callback=parseRequest";
+   var script = document.createElement('script');
+   script.setAttribute('src', url);
+   document.getElementsByTagName('head')[0].appendChild(script);
+   /* Tämän tuloksena:
+   <script src='http://student.labranet.jamk.fi/~ara/server-jsonp.php?callback=parseRequest' /script>
+
+   Ja skriptin sisältönä rivi:
+
+   parseRequest({"name":"Ari","age":49});
+
+   */
+}
+
+
+function parseRequest(response) {
+      var JSONObject = JSON.parse(response);
+      document.getElementById("textarea1").value = 
+      "JSONText="+response+"\nname=" + JSONObject.name
+      + "\nage=" + JSONObject.age;
+}
+</script>
+
+</head>
+<body>
+<form>   
+<textarea id="textarea1" cols=40 rows=3></textarea><br>
+<input type=button value="loadJSON from Server" onclick="loadJSONP();">
+</form>
+
+
+</body>

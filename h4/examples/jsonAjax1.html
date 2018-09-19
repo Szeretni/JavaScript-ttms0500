@@ -1,0 +1,36 @@
+<!-- 04-json-ajax-basic.html -->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script>
+function ajax(url, fn) {
+	try {
+		var xhr = new XMLHttpRequest();
+	} catch(e) {
+		alert(e);
+	}
+	xhr.open("GET", url, true);
+	xhr.send();
+	xhr.onreadystatechange = function() {
+   	if(xhr.readyState == 4 && xhr.status==200) {		
+           fn(xhr.responseText);
+      }
+   }
+}
+
+function loadJSON() {
+   ajax("server.php", function(response) {
+      var JSONObject = JSON.parse(response);
+      document.getElementById("textarea1").value = 
+      "JSONText="+response+"\nname=" + JSONObject.name
+      + "\nage=" + JSONObject.age;
+   });
+}
+</script>
+
+<body>
+<form>   
+<textarea id="textarea1" cols=40 rows=3></textarea><br>
+<input type=button value="loadJSON from Server" onclick="loadJSON();">
+</form>
+
+
+</body>
