@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tehtävä 2</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <h1>Ajax - SearchForm</h1>
+        <form id="form">
+            <input type="text" id="input" placeholder="Find by first name..." />
+            <input type="submit" id="submit" value="Search" />
+        </form>
+        <div id="suggestions"></div>
+
+        <script>
+            function keyUpFn() {
+                   
+            }
+
+            form.addEventListener('keyup', keyUpFn);
+
+            function ajax(url, fn) {
+                var req;
+                if (window.XMLHttpRequest) {
+                    req = new XMLHttpRequest();
+                } else {
+                    req = new ActiveXObject('Microsoft.XMLHTTP');
+                }
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4 && req.status == 200) {
+                        fn(req.responseText);
+                    }
+                }
+                req.open('GET', url, true);
+                req.send();
+            }
+
+            function loadJSON() {
+                ajax("ajax-suggest.php", function (response) {
+                    suggestions.innerHTML = response;    
+                });
+            }
+
+
+
+        </script>
+
+    </body>
+</html>
