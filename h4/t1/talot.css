@@ -1,8 +1,7 @@
 #talot {
     width: 600px;
     height: 800px;
-    position:absolute;
-    left:0px;
+    float:left;
     overflow: auto;
     margin: 10px;
 }
@@ -21,8 +20,7 @@
 .taloImage {
     width: 225px;
     height: 160px;
-    position: absolute;
-    left: 0px;
+    float:left;
     margin: 2px;
 }
 
