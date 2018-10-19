@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        
 
-    </head>
-    <body>
-        <h3>Laskin</h3>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
 
-        <form id="MyForm">
-            Number 1: <input type="text" id="number1" required /><br />
-            Number 2: <input type="text" id="number2" required /><br />
-            <input type="submit" value="Add" /><br/><br/>
-            <label id="results">Sum is </label>
-        </form>
+<body>
+    <h3>Laskin</h3>
 
+    <form id="MyForm">
+        Number 1: <input type="text" id="number1" required /><br />
+        Number 2: <input type="text" id="number2" required /><br />
+        <input type="submit" value="Add" /><br /><br />
+        <label id="results">Sum is </label>
+    </form>
 
-        <script>
-            $(document).ready(function () {
-                $("$#MyForm").submit(function (e) {
-                    e.preventDefault();
-                    let number1 = $("#number1").val();
-                    let result = $("#results");
-
-                    // parseFloat
+    <script>
+        $(document).ready(function () {
+            $("#MyForm").submit(function (e) {
+                e.preventDefault();
+                let number1 = $("#number1").val();
+                let number2 = $("#number2").val();
+                let sum = Number(number1) + Number(number2);
+                $("#results").text("Sum is " + sum);
             }
-
             );
-
-            
-
-        </script>
-
-    </body>
-
+        })
+    </script>
+</body>
 
 </html>
