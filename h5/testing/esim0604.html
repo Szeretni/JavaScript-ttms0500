@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery</title>
+</head>
+<body>    
+    <p></p>    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- own code -->
+    <script type="text/javascript">
+        // document ready
+        $(document).ready(function(){
+            // mouse enter
+            $("body").keydown(function(event){
+                // shows event type and which key is pressed inside p-element
+                // for example: "keydown : 32", when spacebar is pressed
+                $(this).find("p").text(event.type + " : " + event.which);
+            });
+        });
+    </script>
+</body>
+</html>

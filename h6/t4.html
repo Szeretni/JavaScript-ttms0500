@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Tynnyri</title>
+
+</head>
+<body onload="drawToCanvas(100)">
+
+	<h3>Tynnyri</h3>
+	
+	<form action="." oninput="output.value=valueRange.value;drawToCanvas(valueRange.value)">
+	
+		<label>Säädä nestepinnan korkeus<label>
+		<output id="output" name="output" for="valueRange">100
+		</output>
+		<label> cm</label>
+		<br/>
+		<label>0 cm</label>
+		<input type="range" id="valueRange" value="100" min="0" max="200"/>
+		<label>200 cm</label>
+		<br/>
+	
+	</form>
+	
+	<div>
+	
+		<canvas id="myCanvas" width="800" height="400" style="border:1px solid #000000;">
+			
+	</canvas>
+	
+	</div>
+
+<script>
+
+	function drawToCanvas(waterDepth){
+		let canvas = document.getElementById('myCanvas');
+		let ctx = canvas.getContext('2d');
+    
+        ctx.clearRect(0,0,800,400);
+
+        ctx.fillStyle = "#fff";
+        ctx.beginPath();
+        ctx.arc(400,200,200,0,2*Math.PI);
+        ctx.closePath();
+        ctx.stroke();
+
+        let containerDepthCm = 100;
+        let radiusCm = 100;
+        let radius = radiusCm*2;
+        let waterDepthCm = waterDepth;
+        waterDepth = 2 * waterDepth;
+        let angle = Math.tan((radiusCm-waterDepthCm)/radiusCm);
+        let liquidLevel = ((radiusCm-waterDepthCm) * Math.tan(angle));
+        console.log("angle " + angle);
+                
+        //  0cm => angle =  PI/2 =  90
+        //200cm => angle = -PI/2 = -90
+        
+        let sectorAngle = 0;
+        if(angle >= 0){
+            sectorAngle = (Math.PI/2-angle)*2;
+        } else {
+            sectorAngle = (Math.PI/2+angle)*2;
+        }
+        console.log("sectorAngle " + sectorAngle);
+
+        let segmentArea = 0;
+        if(angle >= 0){
+            segmentArea = (sectorAngle-Math.sin(sectorAngle))/2*radiusCm*radiusCm;
+        } else {
+            segmentArea = Math.PI*radiusCm*radiusCm - (sectorAngle-Math.sin(sectorAngle))/2*radiusCm*radiusCm;
+        }
+        console.log("segmentArea " + segmentArea);
+        
+        let liquidVolume = segmentArea * containerDepthCm / 1000;
+
+        ctx.fillStyle= "#00f";
+        ctx.beginPath();
+        ctx.arc(400,200,radius,Math.PI-angle,angle,true);
+        ctx.closePath();
+        ctx.fill();
+        
+        ctx.fillStyle= "#000";
+        ctx.font = "15px Arial";
+        ctx.fillText("Tynnyrin pituus: 100 cm",10,25);
+        ctx.fillText("Tynnyrin halkaisija: 200 cm",10,40);
+        ctx.fillText("Tynnyrin tilavuus: 3141.59 litraa",10,55);
+        ctx.fillText("Nestemäärä: " + liquidVolume.toFixed(2) + " litraa",10,80);
+	}
+    
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
+</head>
+
+<body>
+    
+    <label>Etsi etunimi:</label>
+    <input type="text" id="textInput"/>
+    <div id="suggestions"></div>
+    <div id="results">results</div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+       
+      
+       $("#textInput").autocomplete({
+           appendTo: $("#results"),
+           source: function(request,response){
+            $.ajax( {
+					url: "https://student.labranet.jamk.fi/~L2912/ttms0500/h5/ajax-suggest.php",
+					dataType: "html",
+					data: {
+						term: request.term
+					},
+					success: function( data ) {
+                        data = $.ui.autocomplete.escapeRegex(data);
+                        $("#suggestions").append(data);
+						response( data );
+					}
+				} );
+			}
+           
+       });
+
+   
+ 
+
+    });
+    </script>
+</body>
+
+</html>

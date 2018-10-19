@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery</title>
+    <style>
+        div {
+            width: 100%;
+            height: 150px;
+            border: 1px solid black;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    
+    <div></div>
+    <p id="first"></p>
+    <p id="second"></p>
+    
+    <ul>
+        <li>First</li>
+        <li>Second</li>
+        <li>Third</li>
+    </ul>
+    
+    <a id="link" href="http://google.com">Google</a>
+    <p id="para"></p>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- own code -->
+    <script type="text/javascript">
+        // doc ready
+        $(document).ready(function(){
+            // add p-element at the end of div-element
+            $("div").append("<p>Paragraph 1</p>");
+            // add p-element at the begining of div-element
+            $("div").prepend("<p>Paragraph 2</p>");
+            // add p-element to div-element
+            $("<p>Paragraph 3</p>").appendTo($("div"));
+            // add content to p-element, there are two p-elements id="first", id="second"
+            $("#first").html("<i>Cursive text here...</i>");
+            $("#second").text("<i>Cursive text here too...</i>");
+            // move first li-element to last
+            $("ul li:first").appendTo("ul");
+            // show link href address
+            $("#para").text("Above link points to  " + $("#link").attr("href"));
+        });
+    </script>
+</body>
+</html>

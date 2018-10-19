@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery</title>
+    <style>
+        div {
+            border:1px solid #00C; 
+            width:300px; 
+            height:150px;
+            background: #d2fdee;
+        }
+        p {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="myDIV">
+        <p>Click below buttons!</p>
+    </div>
+    <br/><br/>
+    <button id="showButton">show()</button>
+    <button id="hideButton">hide()</button>
+    <button id="toggleButton">toggle()</button>
+    <br/><br/>
+    <button id="showButton2">show(2000,ready)</button>
+    <button id="hideButton2">hide(2000,ready)</button>
+    <button id="toggleButton2">toggle(2000,ready)</button>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // show
+            $("#showButton").click(function(){
+                $("#myDIV").show();
+            });
+            // hide
+            $("#hideButton").click(function(){
+                $("#myDIV").hide();
+            });
+            // toggle
+            $("#toggleButton").click(function(){
+                $("#myDIV").toggle();
+            });
+            
+            // show 2
+            $("#showButton2").click(function(){
+                $("#myDIV").show(2000,ready);
+            });
+            // hide 2
+            $("#hideButton2").click(function(){
+                $("#myDIV").hide(2000,ready);
+            });
+            // toggle 2
+            $("#toggleButton2").click(function(){
+                $("#myDIV").toggle(2000,ready);
+            });
+            
+        });
+        
+        function ready() {
+            console.log("Animation is ready!");
+        }
+    </script>
+</body>
+</html>

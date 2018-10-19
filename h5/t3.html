@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="t2.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <article>
+            <h3>Titaanien taisto</h3>
+            <p>Teksti11111111111111111111111</p>
+        </article>
+        <article>
+            <h3>Suomalaiset toivat</h3>
+            <p>Teksti2222222222222222222222</p>
+        </article>
+        <article>
+            <h3>Levoton lintupuun</h3>
+            <p>Teksti333333333333333333333333333</p>
+        </article>
+        <article>
+            <h3>Paaville ehdotetaan</h3>
+            <p>Teksti44444444444444444444444</p>
+        </article>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+
+            $("p").hide();
+
+            $("h3").on("click", (function () {
+                console.log("clicked");
+                $(this).siblings().toggle(200);
+            }));
+
+        });   
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery</title>
+    <style>
+        .important {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS changes</h1>
+    <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.   
+    </p>
+    <p id="target">
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry.    
+    </p>
+    <button id="first">Add CSS</button>
+    <button id="second">Remove CSS</button>
+    <button id="third">Toggle CSS</button>
+    <button id="fourth">Add CSS by code</button>
+    <button id="fifth">Remove CSS by code</button>    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // add css class
+            $("#first").click(function(){
+                $("#target").addClass("important");        
+            });
+            // remove css class
+            $("#second").click(function(){
+                $("#target").removeClass("important");        
+            });
+            // toggle on/off css class 
+            $("#third").click(function(){
+                $("#target").toggleClass("important");        
+            });
+            // add css by coding
+            $("#fourth").click(function(){
+                $("#target").css("font-style","italic");        
+            });
+            // remove coding made cscs
+            $("#fifth").click(function(){
+                $("#target").css("font-style","");        
+            });
+        });
+    </script>
+</body>
+</html>

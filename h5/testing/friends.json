@@ -1,0 +1,8 @@
+{
+"friends":
+  [
+    { "id":"id1", "firstName":"Jyrki", "lastName":"Kernel", "email":"jyrki@kernel.com" },
+    { "id":"id2", "firstName":"Anna", "lastName":"Husso", "email":"anna@husso.com" },
+    { "id":"id3", "firstName":"Josef" , "lastName":"Staffer", "email":"josef@staffer.se" }
+  ]
+}

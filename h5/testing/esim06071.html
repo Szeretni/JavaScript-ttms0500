@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery</title>
+    <style>
+        div {
+            background-color: yellow;
+        }
+        span {
+            display: block;
+        }
+    </style>
+</head>
+<body>  
+
+    <p>Tekstikappale</p>
+    <p>Toinen tekstikappale</p>
+    <button id="ekaButton">Lisätään div-elementti tekstikappaleiden ympärille</button>
+    <br/><br/>  
+
+    <span>Tässä on tekstiä span-elementin sisällä...</span>
+    <hr/>
+    <span>Tässä on myös tekstiä span-elementin sisällä</span>
+
+    <br/>
+    <button id="tokaButton">Lisätään div-elementti ja kaikki span-elementit sen sisään</button>   
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- own code -->
+    <script type="text/javascript">
+        // doc ready
+        $(document).ready(function(){
+            // handle click eevnt
+            $("#ekaButton").click(function(){
+                // wrap p-elements inside div
+                $("p").wrap("<div></div>");
+            });
+            // handle click event
+            $("#tokaButton").click(function(){
+                // "move" all span-elements inside a new div
+                $("span").wrapAll("<div></div>");
+            });
+        });
+    </script>
+</body>
+</html>

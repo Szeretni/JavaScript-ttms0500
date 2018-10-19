@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Tehtävä 3</title>
+    </head>
+    <body>
+
+        <button id="fordButton">Ford</button>
+        <button id="opelButton">Opel</button>
+        <button id="toyotaButton">Toyota</button>
+        <button id="resetButton">Nollaa</button>
+
+        <h2>Autolaskuri</h2>
+
+        <div id="fordDiv"></div>
+        <div id="opelDiv"></div>
+        <div id="toyotaDiv"></div>
+
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+        <script>
+
+            let fordButton = document.getElementById('fordButton');
+            let opelButton = document.getElementById('opelButton');
+            let toyotaButton = document.getElementById('toyotaButton');
+            let fordDiv = document.getElementById('fordDiv');
+            let opelDiv = document.getElementById('opelDiv');
+            let toyotaDiv = document.getElementById('toyotaDiv');
+            let fordAmount = 0;
+            let opelAmount = 0;
+            let toyotaAmount = 0;
+
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                //    type: 'horizontalBar',
+                type: 'bar',
+
+                // The data for our dataset
+                data: {
+                    labels: ["Ford", "Opel", "Toyota"],
+                    datasets: [{
+                        label: "Lukumäärä (kpl)",
+                        data: [fordAmount, opelAmount, toyotaAmount],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1.0)',
+                            'rgba(54, 162, 235, 1.0)',
+                            'rgba(255, 206, 86, 1.0)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Autojen lukumäärät',
+                        position: 'top'
+                    },
+                    legend: {
+                        display: false
+                    },
+                    responsive: false,
+                    scales: {
+                        yAxes: [{
+                            barThickness: 53,
+                            ticks: {
+                                beginAtZero:true,
+                                fixedStepSize: 1
+                            },
+                        }],
+                        xAxes: [{
+                            barThickness: 75
+                        }]
+                    }
+                }
+            });   
+
+            fordButton.addEventListener("click",function(){addcar(0)});
+            opelButton.addEventListener("click",function(){addcar(1)});
+            toyotaButton.addEventListener("click",function(){addcar(2)});
+            resetButton.addEventListener("click",nollaa);
+
+            function nollaa(){
+                fordAmount = 0;
+                opelAmount = 0;
+                toyotaAmount = 0;
+                updateValues();
+            }
+
+            function addcar(carnumber){
+                switch(carnumber){
+                    case 0:
+                        fordAmount++;
+                        break;
+                    case 1:
+                        opelAmount++;
+                        break;
+                    case 2:
+                        toyotaAmount++;
+                        break;
+                }
+                updateValues();
+            }
+
+            function updateValues(){
+                fordDiv.innerHTML = "Ford: " + fordAmount;
+                opelDiv.innerHTML = "Opel: " + opelAmount;
+                toyotaDiv.innerHTML = "Toyota: " + toyotaAmount;
+                drawChart();
+            }
+
+            function drawChart(){
+                chart.data.datasets[0].data[0] = fordAmount;
+                chart.data.datasets[0].data[1] = opelAmount;
+                chart.data.datasets[0].data[2] = toyotaAmount;
+                chart.update();
+            }
+
+        </script>
+
+    </body>
+</html>

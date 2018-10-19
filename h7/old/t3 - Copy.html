@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Tehtävä 3</title>
+    </head>
+    <body>
+
+        <button id="fordButton">Ford</button>
+        <button id="opelButton">Opel</button>
+        <button id="toyotaButton">Toyota</button>
+        <button id="resetButton">Nollaa</button>
+
+        <h2>Autolaskuri</h2>
+
+        <div id="fordDiv"></div>
+        <div id="opelDiv"></div>
+        <div id="toyotaDiv"></div>
+
+        <canvas id="myChart" width="400" height="400"></canvas>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+        <script>
+
+            let fordButton = document.getElementById('fordButton');
+            let opelButton = document.getElementById('opelButton');
+            let toyotaButton = document.getElementById('toyotaButton');
+            let fordDiv = document.getElementById('fordDiv');
+            let opelDiv = document.getElementById('opelDiv');
+            let toyotaDiv = document.getElementById('toyotaDiv');
+            let fordAmount = 0;
+            let opelAmount = 0;
+            let toyotaAmount = 0;
+
+            updateValues();
+
+            fordButton.addEventListener("click",function(){
+                fordAmount++;
+                updateValues();
+            });
+
+            opelButton.addEventListener("click",function(){
+                opelAmount++;
+                updateValues();
+            });
+
+            toyotaButton.addEventListener("click",function(){
+                toyotaAmount++;
+                updateValues();
+            });
+
+            resetButton.addEventListener("click",nollaa);
+            
+            function nollaa(){
+                fordAmount = 0;
+                opelAmount = 0;
+                toyotaAmount = 0;
+                updateValues();
+            }
+            
+            addcar(int carnumber){
+                switch(carnumber){
+                    case 0:
+                        
+                }
+            }
+
+            function updateValues(){
+                fordDiv.innerHTML = "Ford: " + fordAmount;
+                opelDiv.innerHTML = "Opel: " + opelAmount;
+                toyotaDiv.innerHTML = "Toyota: " + toyotaAmount;
+                drawChart();
+            }
+
+            function drawChart(){
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    //    type: 'horizontalBar',
+                    type: 'bar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: ["Ford", "Opel", "Toyota"],
+                        datasets: [{
+                            label: "Autojen lukumäärät",
+                            data: [fordAmount, opelAmount, toyotaAmount],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {
+                        responsive: false,
+                        scales: {
+                            yAxes: [{
+                                barThickness: 53,
+                                ticks: {
+                                    beginAtZero:true
+                                }
+                            }],
+                            xAxes: [{
+                                barThickness: 13
+                            }]
+                        }
+                    }
+                });   
+            }
+
+        </script>
+
+    </body>
+</html>
