@@ -1,3 +1,5 @@
-# JavaScript-ttms0500
+JavaScript-ttms0500
 
-## JS-course's assignments.
+My first JS-course's assignments.
+
+My [portfolio](https://student.labranet.jamk.fi/~L2912/).
